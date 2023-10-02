@@ -30,6 +30,15 @@ def help_delete():
     """
 
 
+def help_edit():
+    return """
+    Usage: codebox edit [ARGS] SNIPPET_ID
+    
+    Arguments:
+      --help          Show this help message and exit.
+    """
+
+
 def error_invalid_subcommand():
     return """
     Error: Invalid subcommand.
@@ -38,29 +47,29 @@ def error_invalid_subcommand():
 
 def error_missing_value(value):
     return f"""
-  Error: Missing value after {value}.
-  """
+    Error: Missing value after {value}.
+    """
 
 
 def error_missing_argument(value):
     return f"""
-  Error: Missing {value} argument.
-  """
+    Error: Missing {value} argument.
+    """
 
 
 def error_unknown_argument(value):
     return f"""
-  Error: Unknown argument {value}.
-  """
+    Error: Unknown argument {value}.
+    """
 
 
 def error_saving():
     return f"""
-  Error: Snippet not saved.
-  """
+    Error: Snippet not saved.
+    """
 
 
 def error_not_found(value):
     return f"""
-  Error: Snippet with ID {value} not found.
-  """
+    Error: Snippet with ID {value} not found.
+    """

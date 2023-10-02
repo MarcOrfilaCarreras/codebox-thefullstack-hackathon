@@ -1,16 +1,18 @@
 # -*- coding: utf-8 -*-
+import os
+
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-from app.config import Production
 from app.models.models import Base
 from app.models.models import Snippet
 from app.utils import default_editor
 from app.utils import messages
 
 # Create a database engine
-engine = create_engine(Production.SQLALCHEMY_DATABASE_URI)
+engine = create_engine(
+    f'sqlite:///{os.path.expanduser("~/.codebox/database.db")}')
 
 # Create tables based on models
 Base.metadata.create_all(engine)
