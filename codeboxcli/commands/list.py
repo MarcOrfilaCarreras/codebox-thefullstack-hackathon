@@ -5,8 +5,8 @@ import tabulate
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from app.models.models import Base
-from app.models.models import Snippet
+from codeboxcli.models.models import Base
+from codeboxcli.models.models import Snippet
 
 # Create a database engine
 engine = create_engine(

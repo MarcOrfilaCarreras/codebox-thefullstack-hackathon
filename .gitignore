@@ -1,8 +1,9 @@
 #folders
 __pycache__
-codebox.egg-info
+codeboxcli.egg-info
 .venv
 build
+dist
 
 #files
 database.db

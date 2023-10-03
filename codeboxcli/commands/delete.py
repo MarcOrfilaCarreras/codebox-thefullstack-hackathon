@@ -5,9 +5,9 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-from app.models.models import Base
-from app.models.models import Snippet
-from app.utils import messages
+from codeboxcli.models.models import Base
+from codeboxcli.models.models import Snippet
+from codeboxcli.utils import messages
 
 # Create a database engine
 engine = create_engine(

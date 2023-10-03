@@ -1,0 +1,42 @@
+name: On push
+
+on:
+  push:
+    branches:
+      - master
+      - main
+    paths-ignore:
+      - '**/README.md'
+
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-22.04
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Generate release tag
+      uses: amitsingh-007/next-release-tag@v2.2.0
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Update version in setup.py
+      run: sed -i "s/{{VERSION_PLACEHOLDER}}/${{ env.release_tag }}/g" setup.py
+
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.10'
+
+    - name: Build a binary wheel
+      run: python setup.py sdist
+
+    - name: Publish
+      uses: pypa/gh-action-pypi-publish@master
+      with:
+        password: ${{secrets.PYPI_API_TOKEN}}

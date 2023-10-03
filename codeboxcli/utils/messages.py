@@ -7,6 +7,7 @@ def help_default():
       add       Add an item.
       list      List items.
       delete    Delete an item.
+      edit      Edit an item.
     """
 
 

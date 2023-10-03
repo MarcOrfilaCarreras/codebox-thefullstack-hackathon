@@ -3,8 +3,8 @@ from setuptools import find_packages
 from setuptools import setup
 
 setup(
-    name="codebox",
-    version="0.0.1",
+    name="codeboxcli",
+    version="{{VERSION_PLACEHOLDER}}",
     packages=find_packages(),
     install_requires=[
         "sqlalchemy",
@@ -12,7 +12,7 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "codebox = app.__main__:cli",
+            "codebox=codeboxcli.__main__:cli",
         ],
     },
 )
