@@ -2,20 +2,21 @@
 import os
 import sys
 
-from .commands import add
-from .commands import delete
-from .commands import edit
-from .commands import list
-from .utils import messages
-
 # Define the path to the directory and the path to the configuration file within that directory
 config_dir = os.path.expanduser("~/.codebox")
+
 # Check if the directory doesn't exist, then create it
 if not os.path.exists(config_dir):
     os.makedirs(config_dir)
 
+from codeboxcli.commands import add
+from codeboxcli.commands import delete
+from codeboxcli.commands import edit
+from codeboxcli.commands import list
+from codeboxcli.utils import messages
 
 def cli():
+    
 
     # Check if there are at least 2 command line arguments (including the script name)
     if len(sys.argv) < 2:

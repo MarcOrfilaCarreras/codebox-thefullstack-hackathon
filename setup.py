@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from pathlib import Path
 
-from setuptools import find_packages
 from setuptools import setup
 
 this_directory = Path(__file__).parent
@@ -14,7 +13,12 @@ setup(
     author='Marc Orfila Carreras',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    packages=find_packages(),
+    packages=[  # Error --> https://stackoverflow.com/questions/62249207/cant-find-submodule-within-package
+        'codeboxcli',
+        'codeboxcli.utils',
+        'codeboxcli.models',
+        'codeboxcli.commands'
+    ],
     install_requires=[
         "sqlalchemy",
         "tabulate"
