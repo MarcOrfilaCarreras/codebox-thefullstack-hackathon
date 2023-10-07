@@ -4,6 +4,7 @@ codeboxcli.egg-info
 .venv
 build
 dist
+.pytest_cache
 
 #files
 database.db
