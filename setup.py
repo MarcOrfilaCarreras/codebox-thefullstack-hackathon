@@ -21,7 +21,8 @@ setup(
     ],
     install_requires=[
         "sqlalchemy",
-        "tabulate"
+        "tabulate",
+        "requests"
     ],
     entry_points={
         "console_scripts": [

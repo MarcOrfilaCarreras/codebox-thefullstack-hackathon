@@ -8,6 +8,7 @@ def help_default():
       list      List items.
       delete    Delete an item.
       edit      Edit an item.
+      share     Share an item
     """
 
 
@@ -37,6 +38,17 @@ def help_edit():
     
     Arguments:
       --help          Show this help message and exit.
+    """
+
+
+def help_share():
+    return """
+    Usage: codebox share SNIPPET_ID [ARGS]
+    
+    Arguments:
+      --help          Show this help message and exit.
+      --expire-date   Specify the expire day.
+      --dev-key       Specify the developer key.
     """
 
 
@@ -73,4 +85,18 @@ def error_saving():
 def error_not_found(value):
     return f"""
     Error: Snippet with ID {value} not found.
+    """
+
+
+def share_url(value):
+    return f"""
+    The snippet has been successfully shared.
+    {value}.
+    """
+
+
+def share_error(value):
+    return f"""
+    Error: Unable to share the snippet.
+           {value}.
     """

@@ -13,10 +13,10 @@ from codeboxcli.commands import add
 from codeboxcli.commands import delete
 from codeboxcli.commands import edit
 from codeboxcli.commands import list
+from codeboxcli.commands import share
 from codeboxcli.utils import messages
 
 def cli():
-    
 
     # Check if there are at least 2 command line arguments (including the script name)
     if len(sys.argv) < 2:
@@ -36,6 +36,9 @@ def cli():
     elif subcommand == "edit":
         # Call the 'edit' function from the 'commands' module
         edit.edit(args)
+    elif subcommand == "share":
+        # Call the 'share' function from the 'commands' module
+        share.share(args)
     elif subcommand == "help":
         print(messages.help_default())  # Print the default help message
     else:
