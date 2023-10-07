@@ -39,7 +39,7 @@ def cli():
     elif subcommand == "share":
         # Call the 'share' function from the 'commands' module
         share.share(args)
-    elif subcommand == "help":
+    elif subcommand == "--help":
         print(messages.help_default())  # Print the default help message
     else:
         # Print an error message for an invalid subcommand
