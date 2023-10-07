@@ -17,9 +17,10 @@ def help_add():
     Usage: codebox add [ARGS]
     
     Arguments:
-      --help          Show this help message and exit.
-      --name TEXT     Specify a name for the snippet. (Required)
-      --tags TEXT     Add tags to categorize this snippet. Separate multiple tags with space.
+      --help                 Show this help message and exit.
+      --name TEXT            Specify a name for the snippet. (Required)
+      --description TEXT     Specify the content for the snippet.
+      --tags TEXT            Add tags to categorize this snippet. Separate multiple tags with space.
     """
 
 

@@ -28,7 +28,12 @@ def list_to_tags(tags):
 def add(args):
     # Initialize variables to store name and tags
     name = None
+    description = None
     tags = []
+
+    if len(args) == 0:
+        print(messages.help_add())
+        return  # Exit the function
 
     # Initialize loop index
     i = 0
@@ -46,6 +51,15 @@ def add(args):
             else:
                 print(messages.error_missing_value("--name"))
                 return  # Exit the function if there's an error
+        # Check if the current argument is "--name"
+        elif args[i] == "--description":
+            if i + 1 < len(args):
+                # If there's a value after "--description", assign it to the 'description' variable
+                description = args[i + 1]
+                i += 2  # Skip both "--description" and its value
+            else:
+                print(messages.error_missing_value("--description"))
+                return  # Exit the function if there's an error
         # Check if the current argument is "--tags"
         elif args[i] == "--tags":
             i += 1  # Move to the next argument (the first tag)
@@ -61,6 +75,13 @@ def add(args):
     # Check if a valid name was provided
     if name is None:
         print(messages.error_missing_argument("--name"))
+    elif not ((name is None) and (description is None)):
+        # Create a new Snippet instance and add it to the session
+        with Session() as session:
+            snippet = Snippet(
+                name=name, content=description, tags=list_to_tags(tags))
+            session.add(snippet)
+            session.commit()
     else:
         edited_text = default_editor.open_default_editor("")
 
