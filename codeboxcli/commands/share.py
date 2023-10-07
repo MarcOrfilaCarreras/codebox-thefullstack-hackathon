@@ -24,6 +24,11 @@ Session = sessionmaker(bind=engine)
 
 
 def share(args):
+    if len(args) == 0:
+        # Display help message and exit
+        print(messages.help_share())
+        return
+
     # Initialize default values for options
     expire_date = "1W"
     dev_key = os.getenv("CODEBOX_DEV_KEY")

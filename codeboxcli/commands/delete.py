@@ -21,6 +21,10 @@ Session = sessionmaker(bind=engine)
 
 
 def delete(args):
+    if len(args) == 0:
+        print(messages.help_delete())
+        return  # Exit the function
+
     # Initialize loop index
     i = 0
     while i < len(args):
