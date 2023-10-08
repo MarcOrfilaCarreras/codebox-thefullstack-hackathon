@@ -67,6 +67,10 @@ def add(args):
             while i < len(args) and not args[i].startswith("--"):
                 tags.append(args[i])  # Add the tag to the 'tags' list
                 i += 1  # Move to the next argument
+
+            if len(tags) == 0:
+                print(messages.error_missing_value("--tags"))
+                return  # Exit the function if there's an error
         else:
             # If the argument is not recognized, print an error message and exit
             print(messages.error_unknown_argument(args[i]))
