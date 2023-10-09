@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import locale
 import os
 
 from sqlalchemy import create_engine
@@ -19,10 +20,17 @@ Base.metadata.create_all(engine)
 # Create a session factory
 Session = sessionmaker(bind=engine)
 
+# Extract the language code part
+language_code = locale.getlocale()
+if language_code:
+    language_code = language_code[0].split('_')[0]
+
 
 def delete(args):
+    global language_code
+
     if len(args) == 0:
-        print(messages.help_delete())
+        print(messages.help_delete(language_code))
         return  # Exit the function
 
     # Initialize loop index
@@ -30,7 +38,7 @@ def delete(args):
     while i < len(args):
         # Check if the current argument is "--help"
         if args[i] == "--help":
-            print(messages.help_delete())
+            print(messages.help_delete(language_code))
             return  # Exit the function
 
         # Delete a Snippet instance
@@ -42,5 +50,5 @@ def delete(args):
                 session.commit()
                 i += 1
             else:
-                print(messages.error_not_found(args[i]))
+                print(messages.error_not_found(args[i], language_code))
                 i += 1

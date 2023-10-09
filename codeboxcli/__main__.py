@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import locale
 import os
 import sys
 
@@ -16,11 +17,19 @@ from codeboxcli.commands import list
 from codeboxcli.commands import share
 from codeboxcli.utils import messages
 
+# Extract the language code part
+language_code = locale.getlocale()
+if language_code:
+    language_code = language_code[0].split('_')[0]
+
+
 def cli():
+    global language_code
 
     # Check if there are at least 2 command line arguments (including the script name)
     if len(sys.argv) < 2:
-        print(messages.help_default())  # Print the default help message
+        # Print the default help message
+        print(messages.help_default(language_code))
         return  # Exit the function if no valid subcommand is provided
 
     subcommand = sys.argv[1]  # Get the subcommand from the second argument
@@ -40,10 +49,11 @@ def cli():
         # Call the 'share' function from the 'commands' module
         share.share(args)
     elif subcommand == "--help":
-        print(messages.help_default())  # Print the default help message
+        # Print the default help message
+        print(messages.help_default(language_code))
     else:
         # Print an error message for an invalid subcommand
-        print(messages.error_invalid_subcommand())
+        print(messages.error_invalid_subcommand(language_code))
 
 
 if __name__ == "__main__":
