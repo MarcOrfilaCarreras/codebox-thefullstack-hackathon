@@ -26,7 +26,7 @@ Codebox is a command-line interface (CLI) program that allows you to easily save
 To use Codebox, you need to have Python installed on your system. You can install Codebox using pip:
 
 ```bash
-pip install --editable .
+pip install codeboxcli
 ```
 
 ## Usage
