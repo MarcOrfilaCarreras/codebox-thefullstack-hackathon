@@ -40,6 +40,7 @@ def share(args):
     # Initialize default values for options
     expire_date = "1W"
     dev_key = os.getenv("CODEBOX_DEV_KEY")
+    file_path = None
 
     # Initialize loop index
     i = 0
@@ -66,19 +67,44 @@ def share(args):
             else:
                 print(messages.error_missing_value("--dev-key", language_code))
                 return
+        elif args[i] == "--share-file":
+            # Handle share file option
+            i += 1
+            if i < len(args):
+                file_path = args[i]
+                i += 1
+            else:
+                print(messages.error_missing_value(
+                    "--share-file", language_code))
+                return
         else:
             i += 1
 
-    # Check if there are enough arguments to proceed
-    if len(args) < 1:
-        print(messages.error_missing_argument("ID", language_code))
-        return
+    # Check if we have to share a file
+    if file_path != None:
+        with open(file_path) as f:
+            description = f.read()
 
-    # Update a Snippet instance
+            with Session() as session:
+                snippet = Snippet(
+                    name=file_path, content=description)
+                session.add(snippet)
+                session.commit()
+
+                share_snippet(snippet.id, expire_date, dev_key)
+        return
+    else:
+        share_snippet(args[0], expire_date, dev_key)
+
+
+def share_snippet(id, expire_date, dev_key):
+    global language_code
+
+    # Share a Snippet instance
     with Session() as session:
-        snippet = session.query(Snippet).get(args[0])
+        snippet = session.query(Snippet).get(id)
 
         if snippet:
             pastebin.post(snippet.name, snippet.content, expire_date, dev_key)
         else:
-            print(messages.error_not_found(args[0], language_code))
+            print(messages.error_not_found(id, language_code))

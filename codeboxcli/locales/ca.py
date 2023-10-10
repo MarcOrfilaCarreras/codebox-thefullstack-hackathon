@@ -42,6 +42,7 @@ help_share = """
       --help          Mostrar aquest missatge d'ajuda i sortir.
       --expire-date   Especificar la data d'expiració.
       --dev-key       Especificar la clau de desenvolupador.
+      --share-file    Especificar l'arxiu a compartir.
     """
 
 

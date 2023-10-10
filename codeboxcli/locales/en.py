@@ -42,6 +42,7 @@ help_share = """
       --help          Show this help message and exit.
       --expire-date   Specify the expire day.
       --dev-key       Specify the developer key.
+      --share-file    Specify the file to share.
     """
 
 
