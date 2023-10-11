@@ -5,6 +5,10 @@ import tempfile
 
 
 def open_default_editor(initial_content=""):
+    # Check if initial_content is None
+    if initial_content is None:
+        initial_content = ""
+
     # Check if the EDITOR environment variable is set
     editor = os.environ.get("EDITOR")
 
