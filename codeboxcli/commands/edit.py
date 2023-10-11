@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import datetime
 import locale
 import os
 
@@ -43,6 +44,7 @@ def edit(args):
             if snippet:
                 snippet.content = default_editor.open_default_editor(
                     snippet.content)
+                snippet.date_updated = datetime.datetime.now()
                 session.commit()
             else:
                 print(messages.error_not_found(args[0], language_code))
