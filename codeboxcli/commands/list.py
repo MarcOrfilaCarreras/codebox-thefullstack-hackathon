@@ -28,12 +28,14 @@ def list():
         for snippet in snippet_list:
             content = snippet.content.split(
                 "\n")[0][:100] if snippet.content else ""
-            data.append([snippet.id, snippet.name, content, snippet.tags])
+            data.append([snippet.id, snippet.name, content,
+                        snippet.tags, snippet.url])
 
-        headers = ["ID", "NAME", "CONTENT", "TAGS"]
+        headers = ["ID", "NAME", "CONTENT", "TAGS", "URL"]
 
         # Truncate the "CONTENTS" column to a certain length (e.g., 40 characters)
-        truncated_data = [[row[0], row[1], row[2], row[3]] for row in data]
+        truncated_data = [[row[0], row[1], row[2], row[3], row[4]]
+                          for row in data]
 
         table = tabulate.tabulate(
             truncated_data, headers=headers, tablefmt="grid")

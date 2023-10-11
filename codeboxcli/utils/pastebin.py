@@ -35,3 +35,5 @@ def post(name, content, expire_date, dev_key):
         print(messages.share_url(response.content.decode("utf-8"), language_code))
     else:
         print(messages.share_error(response.content.decode("utf-8"), language_code))
+
+    return response.content.decode("utf-8")
