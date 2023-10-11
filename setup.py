@@ -17,7 +17,8 @@ setup(
         'codeboxcli',
         'codeboxcli.utils',
         'codeboxcli.models',
-        'codeboxcli.commands'
+        'codeboxcli.commands',
+        'codeboxcli.locales'
     ],
     install_requires=[
         "sqlalchemy",

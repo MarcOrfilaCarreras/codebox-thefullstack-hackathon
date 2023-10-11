@@ -19,3 +19,4 @@ class Snippet(Base):
     content = Column(String(1000))
     date_created = Column(DateTime, default=datetime.datetime.utcnow)
     date_updated = Column(DateTime, default=datetime.datetime.utcnow)
+    url = Column(String(400))

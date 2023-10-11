@@ -105,6 +105,8 @@ def share_snippet(id, expire_date, dev_key):
         snippet = session.query(Snippet).get(id)
 
         if snippet:
-            pastebin.post(snippet.name, snippet.content, expire_date, dev_key)
+            snippet.url = pastebin.post(
+                snippet.name, snippet.content, expire_date, dev_key)
+            session.commit()
         else:
             print(messages.error_not_found(id, language_code))
